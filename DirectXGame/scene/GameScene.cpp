@@ -14,6 +14,8 @@ void GameScene::Initialize() {
 
 
 	//textureHandle_ = TextureManager::Load("mario,ipg");
+	 
+	
 	//3Dモデル作成	
 	model_ = Model ::Create();
 	//ワールドトランスフォームの初期化
