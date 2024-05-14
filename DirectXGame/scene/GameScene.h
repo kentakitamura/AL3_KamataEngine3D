@@ -66,4 +66,5 @@ private: // メンバ変数
 
 	//自キャラ
 	Player* player_ = nullptr;
+
 };

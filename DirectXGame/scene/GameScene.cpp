@@ -13,7 +13,7 @@ void GameScene::Initialize() {
 	audio_ = Audio::GetInstance();
 
 
-	//textureHandle_ = TextureManager::Load("mario,ipg");
+	textureHandle_ = TextureManager::Load("mario.png");
 	 
 	
 	//3Dモデル作成	
@@ -28,7 +28,7 @@ void GameScene::Initialize() {
 
 		//自キャラの初期化
 
-		player_->Initialize(); 
+		player_->Initialize( model_, textureHandle_, &viewProjection_); 
 
 }
 
@@ -66,6 +66,11 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+	
+	
+  //自キャラの描写
+	player_->Draw();
+
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -82,8 +87,7 @@ void GameScene::Draw() {
 	// スプライト描画後処理
 	Sprite::PostDraw();
 
-	//自キャラの描写
-	player_->Draw();
+	
 
 #pragma endregion
 }

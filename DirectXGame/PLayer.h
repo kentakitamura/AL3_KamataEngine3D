@@ -1,5 +1,9 @@
 #include "Model.h"
 #include "WorldTransform.h"
+#include "ViewProjection.h"
+
+
+
 
 class Player{
 
@@ -7,7 +11,7 @@ public:
 
 
 //初期化
-	void Initialize(Model* model , uint32_t textureHandle);
+	void Initialize(Model* model , uint32_t textureHandle, ViewProjection * viewProjection);
 	//更新
 	void update();
 	//描画
@@ -22,6 +26,7 @@ private:
 	uint32_t textureHandle_ = 0u;
 
 
+	ViewProjection* viewProjection_ = nullptr;
 
 };
 
