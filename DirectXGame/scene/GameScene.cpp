@@ -67,6 +67,9 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 	
+	// 3Dモデル描画
+	model_->Draw(worldTransform_, viewProjection_, textureHandle_);
+
 	
   //自キャラの描写
 	player_->Draw();
