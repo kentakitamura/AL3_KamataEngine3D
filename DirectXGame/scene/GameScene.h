@@ -8,6 +8,7 @@
 #include "Sprite.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
+#include <vector>
 
 /// <summary>
 /// ゲームシーン
@@ -19,6 +20,8 @@ public: // メンバ関数
 	/// コンストクラタ
 	/// </summary>
 	GameScene();
+
+	std::vector<WorldTransform*> worldTransformBlocks_ ;
 
 	/// <summary>
 	/// デストラクタ
