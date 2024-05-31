@@ -15,5 +15,3 @@ void Player::Initialize(Model* model, uint32_t textureHandle, ViewProjection* vi
 void Player::update() { worldTransform_.TransferMatrix(); }
 
 void Player::Draw() { model_->Draw(worldTransform_, *viewProjection_, textureHandle_); }
-
-
