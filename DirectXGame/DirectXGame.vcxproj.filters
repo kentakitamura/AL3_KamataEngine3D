@@ -208,4 +208,9 @@
       <Filter>シェーダー ファイル</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="TextFile1.txt">
+      <Filter>ソース ファイル</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
