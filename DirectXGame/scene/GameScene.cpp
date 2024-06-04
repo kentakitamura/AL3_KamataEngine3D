@@ -18,8 +18,8 @@ GameScene::~GameScene() {
 
 	delete debugCamera_;
 
-	Model::StaticInitialize;
-
+	//Model::StaticInitialize;
+	
 }
 
 void GameScene::Initialize() {

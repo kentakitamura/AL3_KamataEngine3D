@@ -1,15 +1,15 @@
-#include "Model.h"
+ï»¿#include "Model.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 
 class Player {
 
 public:
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void Initialize(Model* model, uint32_t textureHandle, ViewProjection* viewProjection);
-	// XV
+	// æ›´æ–°
 	void update();
-	// •`‰æ
+	// æç”»
 	void Draw();
 
 private:
