@@ -1,7 +1,8 @@
 #include "GameScene.h"
 #include "TextureManager.h"
-//#include "myMath.h"
+#include "myMath.h"
 #include <cassert>
+
 
 GameScene::GameScene() {}
 
@@ -142,9 +143,9 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 	// 3Dモデル描画
-	//	model_->Draw(worldTransform_, viewProjection_, textureHandle_);
+		model_->Draw(worldTransform_, viewProjection_, textureHandle_);
 	// 自キャラの描画
-	//	player_->Draw();
+		player_->Draw();
 
 	// 縦横ブロック描画
 	for (std::vector<WorldTransform*> worldTransformBlockTate : worldTransformBlocks_) {
