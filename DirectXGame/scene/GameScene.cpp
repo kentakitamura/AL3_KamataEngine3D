@@ -17,6 +17,9 @@ GameScene::~GameScene() {
 	worldTransformBlocks_.clear();
 
 	delete debugCamera_;
+
+	Model::StaticInitialize
+
 }
 
 void GameScene::Initialize() {
