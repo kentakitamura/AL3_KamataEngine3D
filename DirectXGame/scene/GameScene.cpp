@@ -18,7 +18,7 @@ GameScene::~GameScene() {
 
 	delete debugCamera_;
 
-	//Model::StaticInitialize;
+	Model::StaticInitialize;
 	
 }
 
@@ -108,7 +108,7 @@ void GameScene::Update() {
 				continue;
 
 			// アフィン変換行列の作成
-			worldTransformBlockYoko->~WorldTransform();
+			worldTransformBlockYoko->UpdataMatrix();
 		}
 	}
 }
