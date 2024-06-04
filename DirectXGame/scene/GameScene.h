@@ -23,7 +23,7 @@ public: // メンバ関数
 	/// </summary>
 	GameScene();
 
-	std::vector<std::vector<WorldTransform*>> worldTransfomBlocks_;
+	
 
 	/// <summary>
 	/// デストラクタ
