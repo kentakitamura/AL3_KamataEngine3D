@@ -4,7 +4,7 @@
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene() { delete model_; }
+GameScene::~GameScene() { delete model_, delete debugCamera_; }
 
 void GameScene::Initialize() {
 
@@ -28,7 +28,10 @@ void GameScene::Initialize() {
 
 		//自キャラの初期化
 
-		player_->Initialize( model_, textureHandle_, &viewProjection_); 
+		player_->Initialize( model_, textureHandle_, &viewProjection_);
+
+
+		debugCamera_ = new DebugCamera(1280, 720);
 
 }
 
@@ -37,6 +40,8 @@ void GameScene::Update() {
 //自キャラの更新
 	    player_->update();
 
+
+		debugCamera_->Update();
 
 }
 
@@ -75,6 +80,8 @@ void GameScene::Draw() {
 	player_->Draw();
 
 
+	
+	model_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
 #pragma endregion
@@ -90,6 +97,8 @@ void GameScene::Draw() {
 	// スプライト描画後処理
 	Sprite::PostDraw();
 
+
+	
 	
 
 #pragma endregion
