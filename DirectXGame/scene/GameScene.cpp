@@ -101,7 +101,7 @@ void GameScene::Update() {
 
 	// 自キャラの更新
 	player_->update();
-
+	
 	// 縦横ブロック更新
 	for (std::vector<WorldTransform*> worldTransformBlockTate : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlockYoko : worldTransformBlockTate) {
