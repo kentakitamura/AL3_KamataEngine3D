@@ -50,9 +50,10 @@ void GameScene::Initialize() {
 	player_->Initialize(model_, textureHandle_, &viewProjection_);
 
 
-
+	//ドームの生成
 	skydome_ = new Skydome();
-	
+
+	// ドームの初期化
 	skydome_->Initialize(model_, &viewProjection_);
 
 	// 要素数
@@ -112,7 +113,8 @@ void GameScene::Update() {
 
 	// 自キャラの更新
 	player_->update();
-	
+	//ドームの更新
+	skydome_->Update();
 	// 縦横ブロック更新
 	for (std::vector<WorldTransform*> worldTransformBlockTate : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlockYoko : worldTransformBlockTate) {
@@ -126,8 +128,7 @@ void GameScene::Update() {
 		}
 	}
 
-
-	skydome_->Update();
+	
 }
 
 
@@ -163,7 +164,8 @@ void GameScene::Draw() {
 	// 自キャラの描画
 		player_->Draw();
 
-		skydome_->Draw();
+		//ドームの描写
+	    modelSkydome_->Draw(worldTransform_, viewProjection_);
 
 	// 縦横ブロック描画
 	for (std::vector<WorldTransform*> worldTransformBlockTate : worldTransformBlocks_) {

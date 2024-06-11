@@ -68,6 +68,7 @@ private: // メンバ変数
 	// 自キャラ
 	Player* player_ = nullptr;
 
+	//ドーム
 	Skydome* skydome_ = nullptr;
 
 	// 縦横ブロック配列

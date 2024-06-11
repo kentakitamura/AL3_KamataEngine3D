@@ -1,5 +1,5 @@
 ﻿#include "Model.h"
-#include "Viewprojection.h"
+#include "ViewProjection.h"
 #include "WorldTransform.h"
 
 class Skydome {
