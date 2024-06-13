@@ -16,11 +16,15 @@ static inline const uint32_t kNumBlockHorizontal = 100;
 MapChipData mapChipData_;
 
 
+
+void RasetMapChipDate();
+
+
 };
 
-enum class MAochipType {
+enum class MapChipType {
 
-	kBlack,
+	kBlank,
 	kBlock,
 
 

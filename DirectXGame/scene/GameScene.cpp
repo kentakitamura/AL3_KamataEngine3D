@@ -2,8 +2,8 @@
 #include "TextureManager.h"
 #include "myMath.h"
 #include <cassert>
-
-
+#include "MapChipField.h"
+#include <map>
 GameScene::GameScene() {}
 
 GameScene::~GameScene() {
@@ -45,7 +45,7 @@ void GameScene::Initialize() {
 	player_->Initialize(model_, textureHandle_, &viewProjection_);
 
 	// 要素数
-	const uint32_t kNumBlockVirtical = 10;
+	const uint32_t kNumBlockVirtical = mapChipField;
 	const uint32_t kNumBlockHorizontal = 20;
 	// ブロック1個分の横幅
 	const float kBlockWidth = 2.0f;
@@ -173,4 +173,15 @@ void GameScene::Draw() {
 	Sprite::PostDraw();
 
 #pragma endregion
+}
+
+namespace {
+
+	std::map<std::string, MapChipType> mapChipTable = {
+
+    {"0", MapChipType::kBlank},
+    {"1", MapChipType::kBlock}
+};
+
+
 }
