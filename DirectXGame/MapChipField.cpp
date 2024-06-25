@@ -1,12 +1,10 @@
-﻿#include "MapChipField.h"
-#include <assert.h>
+﻿#include <assert.h>
 #include <fstream>
 #include <map>
 #include <sstream>
 #include <string>
 #include <cassert>
-#include "WorldTransform.h"
-#include "Model.h"
+#include "MapChipField.h"
 
 namespace {
 std::map<std::string, MapChipType> mapChipTable = {

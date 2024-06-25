@@ -2,7 +2,6 @@
 #include "TextureManager.h"
 #include "myMath.h"
 #include <cassert>
-#include "MapChipField.h"
 #include <map>
 
 GameScene::GameScene() {}
@@ -20,6 +19,7 @@ GameScene::~GameScene() {
 
 	delete debugCamera_;
 	delete mapChipField_;
+
 
 //	Model::StaticInitialize;
 	
@@ -50,45 +50,42 @@ void GameScene::Initialize() {
 	// デバッグカメラの生成
 	debugCamera_ = new DebugCamera(1280, 720);
 
-	mapChipField_ = new MapChipField;
-	mapChipField_->LoadMapChipCsv("Resources/blocks.csv");
+	mapChipField_ = new MapChipField();
+	mapChipField_->LoadMapChipCsv("Resources/map.csv");
 
 
-	GenerateBlocks();{
-		// 要素数
-		uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
-		uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
-		// ブロック1個分の横幅
-		const float kBlockWidth = 2.0f;
-		const float kBlockHeight = 2.0f;
-		// 要素数を変更する
-		worldTransformBlocks_.resize(numBlockVirtical);
+	GenerateBlocks();
+		
+}
 
-		// キューブの生成
-		for (uint32_t i = 0; i < numBlockVirtical; ++i) {
-			worldTransformBlocks_[i].resize(numBlockHorizontal);
-		}
+void GameScene::GenerateBlocks(){
+	// 要素数
+	uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
+	uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
+	// ブロック1個分の横幅
+//	const float kBlockWidth = 2.0f;
+//	const float kBlockHeight = 2.0f;
+	// 要素数を変更する
+	worldTransformBlocks_.resize(numBlockVirtical);
 
-		for (uint32_t i = 0; i < numBlockVirtical; ++i) {
-			for (uint32_t j = 0; j < numBlockHorizontal; ++j) {
-				if (mapChipField_ -> GetMapChipTypeByIndex(j,i) == MapChipType::kBlank) {
-					WorldTransform* worldTransform = new WorldTransform();
-					worldTransform->Initialize();
-					worldTransformBlocks_[i][j] = worldTransform;
-					worldTransformBlocks_[i][j]->translation_ =  mapChipField_->GetMapChipTypeByIndex(j, i);
-				}
+	// キューブの生成
+	for (uint32_t i = 0; i < numBlockVirtical; ++i) {
+		worldTransformBlocks_[i].resize(numBlockHorizontal);
+	}
+
+	for (uint32_t i = 0; i < numBlockVirtical; ++i) {
+		for (uint32_t j = 0; j < numBlockHorizontal; ++j) {
+			if (mapChipField_->GetMapChipTypeByIndex(j, i) == MapChipType::kBlock) {
+				WorldTransform* worldTransform = new WorldTransform();
+				worldTransform->Initialize();
+				worldTransformBlocks_[i][j] = worldTransform;
+				worldTransformBlocks_[i][j]->translation_ =
+				    mapChipField_->GetMapChipPositionByIndex(j, i);
 			}
 		}
+	}
+};
 
-
-
-
-
-
-	};
-
-	
-}
 
 void GameScene::Update() {
 
@@ -188,17 +185,4 @@ void GameScene::Draw() {
 	Sprite::PostDraw();
 
 #pragma endregion
-}
-
-
-
-namespace {
-
-	std::map<std::string, MapChipType> mapChipTable = {
-
-    {"0", MapChipType::kBlank},
-    {"1", MapChipType::kBlock}
-};
-
-
 }

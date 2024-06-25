@@ -1,9 +1,7 @@
-﻿#include "Vector3.h"
-#include <stdint.h>
+﻿#include <stdint.h>
 #include <vector>
-#include "WorldTransform.h"
-#include "Model.h"
-#include <cassert>
+#include "Vector3.h"
+
 
 // 伝統的な列挙と比べてenum classには次の利点があります。
 // enum classの列挙値は暗黙的に整数型に変換されず、
