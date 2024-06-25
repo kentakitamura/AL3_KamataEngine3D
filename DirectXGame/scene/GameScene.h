@@ -79,5 +79,5 @@ private: // メンバ変数
 	// デバッグカメラ
 	DebugCamera* debugCamera_ = nullptr;
 
-	MapChipField* mapChipField_;
+	MapChipField* mapChipField_ = nullptr;
 };
