@@ -121,6 +121,7 @@ void GameScene::Update() {
 
 	// 自キャラの更新
 	player_->update();
+	skydome_->Update();
 	
 	// 縦横ブロック更新
 	for (std::vector<WorldTransform*> worldTransformBlockTate : worldTransformBlocks_) {
