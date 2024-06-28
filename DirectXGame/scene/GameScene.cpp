@@ -48,6 +48,13 @@ void GameScene::Initialize() {
 	player_->Initialize(model_, textureHandle_, &viewProjection_);
 
 
+	// ドームの生成
+	skydome_ = new Skydome();
+
+	// ドームの初期化
+	skydome_->Initialize(model_, &viewProjection_);
+
+
 	// デバッグカメラの生成
 	debugCamera_ = new DebugCamera(1280, 720);
 
