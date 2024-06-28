@@ -167,7 +167,8 @@ void GameScene::Draw() {
 		model_->Draw(worldTransform_, viewProjection_, textureHandle_);
 	// 自キャラの描画
 		player_->Draw();
-
+	    // ドームの描写
+	    modelSkydome_->Draw(worldTransform_, viewProjection_);
 	// 縦横ブロック描画
 	for (std::vector<WorldTransform*> worldTransformBlockTate : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlockYoko : worldTransformBlockTate) {
