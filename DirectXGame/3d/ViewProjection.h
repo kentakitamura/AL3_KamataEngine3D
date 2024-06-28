@@ -89,3 +89,11 @@ private:
 };
 
 static_assert(!std::is_copy_assignable_v<ViewProjection>);
+
+
+
+
+
+
+
+
