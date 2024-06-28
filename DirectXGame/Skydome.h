@@ -1,15 +1,19 @@
-﻿#include "Skydome.h"
+﻿#include "Model.h"
+#include "ViewProjection.h"
+#include "WorldTransform.h"
 
-void Skydome::Initialize(Model* model, ViewProjection* viewProjection) {
+class Skydome {
+public:
+	void Initialize(Model* model, ViewProjection* viewProjection);
 
-	worldTransform_.Initialize();
-	model_ = model;
-	viewProjection_ = viewProjection;
-}
+	void Update();
 
-void Skydome::Update() {}
+	void Draw();
 
-void Skydome::Draw() {
-	// 3Dモデル描画
-	model_->Draw(worldTransform_, *viewProjection_);
-}
+private:
+	// ワールド変換データ
+	WorldTransform worldTransform_;
+	ViewProjection* viewProjection_ = nullptr;
+	// モデル
+	Model* model_ = nullptr;
+};
