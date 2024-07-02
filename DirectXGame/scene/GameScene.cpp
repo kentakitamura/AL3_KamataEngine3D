@@ -37,6 +37,7 @@ void GameScene::Initialize() {
 	model_ = Model::Create();
 	modelBlock_ = Model::Create();
 	modelSkydome_ = Model::CreateFromOBJ("sphere", true);
+	modelPlayer_ = Model::Create();
 	// ワールドトランスフォームの初期化
 	worldTransform_.Initialize();
 	// ビュープロジェクションの初期化
@@ -45,9 +46,10 @@ void GameScene::Initialize() {
 	// 自キャラの生成
 	player_ = new Player();
 	// 自キャラの初期化
-	player_->Initialize(model_, textureHandle_, &viewProjection_);
+	Vector3 playerpositon = mapChipField_->GetMapChipTypeByIndex(1, 1 );
+	player_->Initialize(modelPlayer_, &viewProjection_ ,playerpositon);
 
-
+	
 	// ドームの生成
 	skydome_ = new Skydome();
 
@@ -120,7 +122,7 @@ void GameScene::Update() {
 	}
 
 	// 自キャラの更新
-	player_->update();
+	player_->Update();
 	skydome_->Update();
 	
 	// 縦横ブロック更新
@@ -166,7 +168,7 @@ void GameScene::Draw() {
 	// 3Dモデル描画
 		model_->Draw(worldTransform_, viewProjection_, textureHandle_);
 	// 自キャラの描画
-		player_->Draw();
+	    modelPlayer_->Draw(worldTransform_, viewProjection_);
 	    // ドームの描写
 	    modelSkydome_->Draw(worldTransform_, viewProjection_);
 	// 縦横ブロック描画
