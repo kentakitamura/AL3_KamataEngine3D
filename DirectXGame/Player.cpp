@@ -1,13 +1,13 @@
 ﻿#define NOMINMAX
 #include "Player.h"
 #include "DirectxCommon.h"
-//#include "Easing.h"
+#include "Easing.h"
 #include "Input.h"
 #include <algorithm>
 #include <cassert>
 #include <numbers>
 
-void Player::Initialize(const Vector3& position, ViewProjection* viewProjection) {
+void Player::Initialize(Model* model,const Vector3& position, ViewProjection* viewProjection) {
 
 	// ワールド変換の初期化
 	worldTransform_.Initialize();
@@ -19,7 +19,7 @@ void Player::Initialize(const Vector3& position, ViewProjection* viewProjection)
 	worldTransform_.rotation_.y = std::numbers::pi_v<float> / 2.0f;
 
 	// 引数の内容をメンバ変数に記録
-	model_ = Model::CreateFromOBJ("player", true); //	textureHandle_ = textureHandle;
+	model_ = model; //	textureHandle_ = textureHandle;
 }
 
 void Player::Update() {
@@ -77,20 +77,20 @@ void Player::Update() {
 				acceleration.x = 0;
 			}
 
-			//if (turnTimer_ > 0.0f) {
-			//	// タイマーのカウントダウン
-			//	turnTimer_ -= 1.0f / 60.0f;
+			if (turnTimer_ > 0.0f) {
+				// タイマーのカウントダウン
+				turnTimer_ -= 1.0f / 60.0f;
 
-			//	// 左右の自キャラ角度テーブル
-			//	float destinationRotationYTable[] = {
-			//	    std::numbers::pi_v<float> / 2.0f, std::numbers::pi_v<float> * 3.0f / 2.0f};
-			//	// 状態に応じた角度を取得する
-			//	float destinationRotationY =
-			//	    destinationRotationYTable[static_cast<uint32_t>(lrDirection_)];
-			//	// 自キャラの角度を設定する
-			//	worldTransform_.rotation_.y = Easing::Liner(
-			//	    destinationRotationY, turnFirstRotationY_, Easing::EaseInOut(turnTimer_));
-			//}
+				// 左右の自キャラ角度テーブル
+				float destinationRotationYTable[] = {
+				    std::numbers::pi_v<float> / 2.0f, std::numbers::pi_v<float> * 3.0f / 2.0f};
+				// 状態に応じた角度を取得する
+				float destinationRotationY =
+				    destinationRotationYTable[static_cast<uint32_t>(lrDirection_)];
+				// 自キャラの角度を設定する
+				worldTransform_.rotation_.y = Easing::Liner(
+				    destinationRotationY, turnFirstRotationY_, Easing::EaseInOut(turnTimer_));
+			}
 
 		} else {
 			// 非入力時は移動減衰をかける

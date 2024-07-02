@@ -8,6 +8,9 @@ GameScene::GameScene() {}
 
 GameScene::~GameScene() {
 	delete model_;
+	delete modelBlock_;
+	delete modelPlayer_;
+	delete modelSkydome_;
 
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
@@ -48,8 +51,8 @@ void GameScene::Initialize() {
 	// 自キャラの生成
 	player_ = new Player();
 	// 自キャラの初期化
-	Vector3 playerpositon = mapChipField_->GetMapChipPositionByIndex(1, 1 );
-	player_->Initialize(playerpositon, &viewProjection_);
+	Vector3 playerpositon = mapChipField_->GetMapChipPositionByIndex(1, 19 );
+	player_->Initialize(modelPlayer_,playerpositon, &viewProjection_);
 
 	
 
@@ -170,10 +173,10 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 	// 3Dモデル描画
-		model_->Draw(worldTransform_, viewProjection_, textureHandle_);
+		//model_->Draw(worldTransform_, viewProjection_, textureHandle_);
 	// 自キャラの描画
-	    modelPlayer_->Draw(worldTransform_, viewProjection_);
-	    // ドームの描写
+	    player_->Draw();
+	    // ームの描写
 	    modelSkydome_->Draw(worldTransform_, viewProjection_);
 	// 縦横ブロック描画
 	for (std::vector<WorldTransform*> worldTransformBlockTate : worldTransformBlocks_) {
