@@ -37,7 +37,7 @@ void GameScene::Initialize() {
 	model_ = Model::Create();
 	modelBlock_ = Model::Create();
 	modelSkydome_ = Model::CreateFromOBJ("sphere", true);
-	modelPlayer_ = Model::Create();
+	modelPlayer_ = Model::CreateFromOBJ("player", true);
 	// ワールドトランスフォームの初期化
 	worldTransform_.Initialize();
 	// ビュープロジェクションの初期化
@@ -46,8 +46,8 @@ void GameScene::Initialize() {
 	// 自キャラの生成
 	player_ = new Player();
 	// 自キャラの初期化
-	Vector3 playerpositon = mapChipField_->GetMapChipTypeByIndex(1, 1 );
-	player_->Initialize(modelPlayer_, &viewProjection_ ,playerpositon);
+	Vector3 playerpositon = mapChipField_->GetMapChipPositionByIndex(1, 1 );
+	player_->Initialize(playerpositon, &viewProjection_);
 
 	
 
