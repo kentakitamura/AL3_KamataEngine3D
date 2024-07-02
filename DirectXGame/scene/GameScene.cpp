@@ -50,6 +50,8 @@ void GameScene::Initialize() {
 	player_->Initialize(modelPlayer_, &viewProjection_ ,playerpositon);
 
 	
+
+
 	// ドームの生成
 	skydome_ = new Skydome();
 
