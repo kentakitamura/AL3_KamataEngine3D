@@ -15,6 +15,8 @@ GameScene::~GameScene() {
 		}
 	}
 
+
+
 	worldTransformBlocks_.clear();
 
 	delete debugCamera_;
