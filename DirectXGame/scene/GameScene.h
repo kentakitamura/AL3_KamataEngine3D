@@ -11,7 +11,7 @@
 #include "WorldTransform.h"
 #include "Skydome.h"
 #include "MapChipField.h"
-
+#include "CameraController.h"
 
 #include <vector>
 
@@ -73,10 +73,15 @@ private: // メンバ変数
 	// ビュープロジェクション
 	ViewProjection viewProjection_;
 
+	//スカイドーム
 	Skydome* skydome_ = nullptr;
+
 
 	// 自キャラ
 	Player* player_ = nullptr;
+
+	//カメラコントロール
+	CameraController* cameraController_ = nullptr;
 
 	// 縦横ブロック配列
 	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
