@@ -67,6 +67,7 @@ void GameScene::Initialize() {
 	// デバッグカメラの生成
 	debugCamera_ = new DebugCamera(1280, 720);
 
+	//マップチップの生成
 	mapChipField_ = new MapChipField();
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
 
