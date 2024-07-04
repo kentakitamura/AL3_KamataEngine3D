@@ -77,8 +77,10 @@ void GameScene::Initialize() {
 	cameraController_->Initialize();
 
 	//追従セット
-	cameraController_->SetTarget(Player * target);
+	cameraController_->SetTarget(player_);
 
+	//リセット
+	cameraController_->Reset();
 
 	GenerateBlocks();
 		
@@ -128,11 +130,15 @@ void GameScene::Update() {
 	if (isDebugCameraActive_) {
 		// デバッグカメラの更新
 		debugCamera_->Update();
+		cameraController_->Update();
 		viewProjection_.matView = debugCamera_->GetViewProjection().matView;
 		viewProjection_.matProjection = debugCamera_->GetViewProjection().matProjection;
 		// ビュープロジェクション行列の転送
 		viewProjection_.TransferMatrix();
 	} else {
+		viewProjection_.matView = cameraController_->GetViewProjection().matView;
+		viewProjection_.matProjection = cameraController_->GetViewProjection().matProjection;
+
 		// ビュープロジェクション行列の更新と転送
 		viewProjection_.UpdateMatrix();
 	}
