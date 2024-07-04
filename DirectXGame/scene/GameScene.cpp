@@ -128,7 +128,7 @@ void GameScene::Update() {
 
 	// カメラ処理
 	if (isDebugCameraActive_) {
-		// デバッグカメラの更新
+		// デバッグカメラ,カメラコントロールの更新
 		debugCamera_->Update();
 		cameraController_->Update();
 		viewProjection_.matView = debugCamera_->GetViewProjection().matView;

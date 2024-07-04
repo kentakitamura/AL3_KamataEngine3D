@@ -4,6 +4,7 @@
 #include "Easing.h"
 
 
+
 /// <summary>
 /// 自キャラ
 /// </summary>
@@ -14,6 +15,9 @@ public:
 		kRight,
 		kLeft,
 	};
+
+
+	
 
 	/// <summary>
 	/// 初期化
@@ -68,4 +72,10 @@ private:
 	static inline const float kLimitFallSpeed = 0.2f;
 	// ジャンプ初速（上方向）
 	static inline const float kJumpAcceleration = 0.7f;
+
+
+
+	const Vector3& GetVelocity() const { return velocity_; }
+
+
 };
