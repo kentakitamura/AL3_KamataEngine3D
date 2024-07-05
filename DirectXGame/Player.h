@@ -8,6 +8,9 @@
 /// <summary>
 /// 自キャラ
 /// </summary>
+
+class MapChipField;
+
 class Player {
 public:
 	// 左右
@@ -38,7 +41,12 @@ public:
 	const WorldTransform& GetWorldTransform() const { return worldTransform_; }
 	const Vector3& GetVelocity() const { return velocity_; }
 
+	void SetMapChipField(MapChipField* mapChipField) { mapChipField_ = mapChipField; }
+
 private:
+
+	MapChipField* mapChipField_ = nullptr;
+
 	// ワールド変換データ
 	WorldTransform worldTransform_;
 	// モデル
@@ -77,7 +85,9 @@ private:
 	static inline const float kJumpAcceleration = 0.7f;
 
 
-
+	//キャラの当たり判定
+	static inline const float kWidth = 0.8f;
+	static inline const float kHeight = 0.8f;
 
 
 };
