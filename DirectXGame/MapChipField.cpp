@@ -83,3 +83,17 @@ Vector3 MapChipField::GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex
 
 	return Vector3(kBlockWidth * xIndex, kBlockHeight * (kNumBlockVirtical - 1 - yIndex), 0);
 }
+
+
+
+VMapChipField::Rect MapChipField::GetRectByIndex(uint32_t xIndex, uint32_t yIndex) {
+	// 指定ブロックの中心座標を取得する
+	Vector3 center = GetMapChipPositionByIndex(xIndex, yIndex);
+
+	Rect rect;
+	rect.left = center.x - kBlockWidth / 2.0f;    // 短形左端
+	rect.right = center.x + kBlockWidth / 2.0f;   // 短形右端
+	rect.bottom = center.y - kBlockHeight / 2.0f; // 短形下端
+	rect.top = center.y + kBlockHeight / 2.0f;    // 短形上端
+	return rect;
+}

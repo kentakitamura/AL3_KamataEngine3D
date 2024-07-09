@@ -19,8 +19,15 @@ public:
 		kLeft,
 	};
 
-
 	
+
+	enum Corner {
+		kRightBottom, // 右下
+		kLeftBottom,  // 左下
+		kRightTop,    // 右上
+		kLeftTop,     // 左上
+		kNumCorner    // 要素数
+	};
 
 	/// <summary>
 	/// 初期化
@@ -42,6 +49,9 @@ public:
 	const Vector3& GetVelocity() const { return velocity_; }
 
 	void SetMapChipField(MapChipField* mapChipField) { mapChipField_ = mapChipField; }
+
+
+	
 
 private:
 
@@ -88,6 +98,34 @@ private:
 	//キャラの当たり判定
 	static inline const float kWidth = 0.8f;
 	static inline const float kHeight = 0.8f;
+	
+
+    struct CollisionMapInfo {
+
+		bool isCeiling = false; // 天井衝突フラグ
+		bool isRanding = false; // 着地フラグ
+		bool ishitWall = false; // 壁接触フラグ
+
+		//移動量
+		Vector3 move;
+
+
+	};
+
+	/// マップ衝突判定上方向
+	void MapCollisionTop(CollisionMapInfo& info);
+
+	/// マップ衝突判定
+	void MapCollision(CollisionMapInfo& info);
+
+	Vector3 CornerPosition(const Vector3& center, Corner Corner);
+
+	/// 判定結果反映移動メンバ関数
+	void ReflectMove( CollisionMapInfo& info);
+	/// 天井衝突時メンバ関数
+	void CeilingContact(CollisionMapInfo& info);
+
+
 
 
 };
