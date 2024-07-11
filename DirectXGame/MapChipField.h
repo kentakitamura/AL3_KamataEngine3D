@@ -1,5 +1,6 @@
 ﻿#include <stdint.h>
 #include <vector>
+#include <cstdint>
 #include "Vector3.h"
 
 
@@ -42,13 +43,33 @@ public:
 	void ResetMapChipData();
 	void LoadMapChipCsv(const std::string& filePath);
 	MapChipType GetMapChipTypeByIndex(uint32_t xIndex, uint32_t yIndex);
+	MapChipType GetMapChipTypeByPosition(const Vector3& position);
 	Vector3 GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex);
-	uint32_t GetNumBlockVirtical();
-	uint32_t GetNumBlockHorizontal();
+	uint32_t GetNumBlockVirtical() const { return kNumBlockVirtical; };
+	uint32_t GetNumBlockHorizontal() const { return kNumBlockHorizontal; };
 
 	IndexSet GetMapChipIndexSetByPosition(const Vector3& position);
 	Rect GetRectByIndex(uint32_t xIndex, uint32_t yIndex);
 
+	static inline const float kBlockWidth = 1.0f;
+	static inline const float kBlockHeight = 1.0f;
+
+	struct IndexSet {
+	
+	uint32_t xIndex;
+    uint32_t yIndex;
+
+	
+	};
+
+	struct Rect {
+	
+		float left;
+		float right;
+		float bottom;
+		float top;
+	
+	};
 
 private:
 	// 1ブロックのサイズ

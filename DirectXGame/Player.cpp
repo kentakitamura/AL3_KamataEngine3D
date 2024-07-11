@@ -22,16 +22,7 @@ void Player::Initialize(Model* model,const Vector3& position, ViewProjection* vi
 	model_ = model; 
 }
 
-Vector3 Player::CornerPosition(const Vector3& center, Corner corner) {
-	Vector3 offsetTable[kNumCorner] = {
-	    {+kWidth / 2.0f, -kHeight / 2.0f, 0}, //  kRightBottom
-	    {-kWidth / 2.0f, -kHeight / 2.0f, 0}, //  kLeftbottom
-	    {+kWidth / 2.0f, +kHeight / 2.0f, 0}, //  kRightTop
-	    {-kWidth / 2.0f, +kHeight / 2.0f, 0}, //  kLeftTop
-	};
 
-	return center + offsetTable[static_cast<uint32_t>(corner)];
-}
 
 // 移動後の四つの角の座標
 sstd::array<Vector3, static_cast> positionsNew; 
@@ -39,49 +30,8 @@ sstd::array<Vector3, static_cast> positionsNew;
 for (uint32_t i = 0; i < positionsNew.size(); ++i){
 	positionsNew[i] = CornerPosition(worldTransform_.translation_ + info.move, static_cast<Corner>(i));
 
-}
 
 
-
-
-// 真上の当たり判定を行う
-bool hit = false;
-// 左上点の判定
-MapChipField::IndexSet indexSet;
-
-indexSet = mapChipField_->GetMapChipIndexSetByPosition(positionsNew[kLeftTop]);
-mapChipType = mapChipField_->GetMapChipTypeByIndex(indexSet.xIndex, indexSet.yIndex);
-if (mapChipType == MapChipType::kBlock) {
-	hit = true;
-}
-
-// 右上点の判定
-// kRightTopについて同様に判定する
-indexSet = mapChipField_->GetMapChipIndexSetByPosition(positionsNew[kRightTop]);
-mapChipType = mapChipField_->GetMapChipTypeByIndex(indexSet.xIndex, indexSet.yIndex);
-if (mapChipType == MapChipType::kBlock) {
-	hit = true;
-}
-
-// ブロックにヒット?
-if (hit) {
-	// めり込みを排除する方向に移動量を設定する
-	indexSet = mapChipField_->GetMapChipIndexSetByPosition(info.move);
-	// めり込み先ブロックの範囲短形
-	MapChipField::Rect rect = mapChipField_->GetRectByIndex(indexSet.xIndex, indexSet.yIndex);
-
-	info.move.y = std::max(0.0f, move.y);
-
-  // 天井に当たったことを記録する
-	info.ceiling = true;
-
-	
-
-
-
-	
-	
-}
 
 /// マップ衝突判定
 
@@ -137,7 +87,7 @@ void Player::Update() {
 
 		// 行列計算
 		worldTransform_.UpdateMatrix();
-}
+	}
 
 void Player::Draw() { model_->Draw(worldTransform_, *ViewProjection_); }
 
@@ -259,6 +209,7 @@ void Player::InputMove() {
 	    }
 
 	    MapChipType mapChipType;
+		MapChipType mapChipTypeNext;
 	    // 真上の当たり判定を行う
 	    bool hit = false;
 	    // 左上点の判定
@@ -301,6 +252,75 @@ void Player::InputMove() {
 
 		    }
 	    }
+    }
+
+
+
+	void Player::CheckMapCollisionDown(CollisionMapInfo & info) {
+
+		//下降あり
+		//  上昇あり？
+		if (info.move.y >= 0) {
+			return;
+		}
+
+		std::array<Vector3, kNumCorner> positionsNew;
+
+		for (uint32_t i = 0; i < positionsNew.size(); ++i) {
+			positionsNew[i] =
+			    CornerPosition(worldTransform_.translation_ + info.move, static_cast<Corner>(i));
+		}
+
+		MapChipType mapChipType;
+		MapChipType mapChipTypeNext;
+		// 真下の当たり判定を行う
+		bool hit = false;
+		// 左下点の判定
+		MapChipField::IndexSet indexSet;
+
+		indexSet = mapChipField_->GetMapChipIndexSetByPosition(positionsNew[kLeftBottom]);
+
+		mapChipType = mapChipField_->GetMapChipTypeByIndex(indexSet.xIndex, indexSet.yIndex);
+
+		if (mapChipType == MapChipType::kBlock) {
+			hit = true;
+		}
+		// 右下点の判定
+		indexSet = mapChipField_->GetMapChipIndexSetByPosition(positionsNew[kRightBottom]);
+
+		mapChipType = mapChipField_->GetMapChipTypeByIndex(indexSet.xIndex, indexSet.yIndex);
+
+		if (mapChipType == MapChipType::kBlock && MapChipTypeNext != MapChipType::kBlock) {
+
+			hit = true;
+		}
+	
+	  
+	
+	
+	
+	
+	
+	}
+
+
+
+
+
+
+
+
+
+
+	Vector3 Player::CornerPosition(const Vector3& center, Corner corner) {
+	    Vector3 offsetTable[kNumCorner] = {
+	        {+kWidth / 2.0f, -kHeight / 2.0f, 0}, //  kRightBottom
+	        {-kWidth / 2.0f, -kHeight / 2.0f, 0}, //  kLeftbottom
+	        {+kWidth / 2.0f, +kHeight / 2.0f, 0}, //  kRightTop
+	        {-kWidth / 2.0f, +kHeight / 2.0f, 0}, //  kLeftTop
+	    };
+
+	    return center + offsetTable[static_cast<uint32_t>(corner)];
     }
 
 

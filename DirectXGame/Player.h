@@ -69,8 +69,12 @@ private:
 	Vector3 velocity_ = {};
 
 	static inline const float kAcceleration = 0.01f;
-	static inline const float kAttenuation = 0.01f;
-	static inline const float kLimitRunSpeed = 2.0f;
+	static inline const float kAttenuation = 0.05f;
+	static inline const float kAttenuationWall = 0.2f;
+	static inline const float kAttenuationLanding = 0.0f;
+	static inline const float kLimitRunSpeed = 0.5f;
+	static inline const float kBlank = 0.04f;
+	static inline const float kGroundSearchHeight = 0.06f;
 
 	LRDirection lrDirection_ = LRDirection::kRight;
 
@@ -118,14 +122,29 @@ private:
 	/// マップ衝突判定
 	void MapCollision(CollisionMapInfo& info);
 
-	Vector3 CornerPosition(const Vector3& center, Corner Corner);
+
+
 
 	/// 判定結果反映移動メンバ関数
 	void ReflectMove( CollisionMapInfo& info);
 	/// 天井衝突時メンバ関数
 	void CeilingContact(CollisionMapInfo& info);
 
+	void InputMove();
 
+	void CheckMapCollision(CollisionMapInfo& info);
 
+	void CheckMapCollisionUp(CollisionMapInfo& info);
+
+	void CheckMapCollisionDown(CollisionMapInfo& info);
+
+	void CheckMapCollisionRight(CollisionMapInfo& info);
+
+	void CheckMapCollisionLeft(CollisionMapInfo& info);
+
+	void UpdateOnGround(const CollisionMapInfo& info);
+    void AnimateTurn();
+
+	Vector3 CornerPosition(const Vector3& center, Corner Corner);
 
 };
