@@ -5,6 +5,7 @@
 #include "Easing.h"
 #include "Input.h"
 #include "MapChipField.h"
+#include "myMath.h"
 #include <algorithm>
 #include <cassert>
 #include <numbers>

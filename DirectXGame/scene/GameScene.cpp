@@ -34,9 +34,9 @@ void GameScene::Initialize() {
 	audio_ = Audio::GetInstance();
 
 	// ファイル名を指定してテクスチャを読み込む
-	textureHandle_ = TextureManager::Load("block.jpg");
+//	textureHandle_ = TextureManager::Load("block.jpg");
 	// 3Dモデルの生成
-	model_ = Model::Create();
+//	model_ = Model::Create();
 	modelBlock_ = Model::CreateFromOBJ("block");
 	modelPlayer_ = Model::CreateFromOBJ("player");
 	// ワールドトランスフォームの初期化
@@ -62,7 +62,7 @@ void GameScene::Initialize() {
 	debugCamera_ = new DebugCamera(1280, 720);
 
 	mapChipField_ = new MapChipField;
-	mapChipField_->LoadMapChipCsv("Resources/blocks.csv");
+	mapChipField_->LoadMapChipCsv("Resources/map.csv");
 
 	player_->SetMapChipField(mapChipField_);
 

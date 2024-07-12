@@ -70,99 +70,56 @@ Matrix4x4 MatrixMultiply(Matrix4x4& m1, Matrix4x4& m2) {
     result.m[3][2] = m1.m[3][0] * m2.m[0][2] + m1.m[3][1] * m2.m[1][2] + m1.m[3][2] * m2.m[2][2] + m1.m[3][3] * m2.m[3][2];
     result.m[3][3] = m1.m[3][0] * m2.m[0][3] + m1.m[3][1] * m2.m[1][3] + m1.m[3][2] * m2.m[2][3] + m1.m[3][3] * m2.m[3][3];
 
-      return result;
-}
-
-    // 単項演算子オーバーロード
-Vector3 operator+(const Vector3& v) { return v; }
-Vector3 operator-(const Vector3& v) { return Vector3(-v.x, -v.y, -v.z); }
-Vector3& operator+=(Vector3& lhv, const Vector3& rhv) {
-	lhv.x += rhv.x;
-	lhv.y += rhv.y;
-	lhv.z += rhv.z;
-	return lhv;
-}
-Vector3& operator-=(Vector3& lhv, const Vector3& rhv) {
-	lhv.x -= rhv.x;
-	lhv.y -= rhv.y;
-	lhv.z -= rhv.z;
-	return lhv;
-}
-Vector3& operator*=(Vector3& v, float s) {
-	v.x *= s;
-	v.y *= s;
-	v.z *= s;
-	return v;
-}
-Vector3& operator/=(Vector3& v, float s) {
-	v.x /= s;
-	v.y /= s;
-	v.z /= s;
-	return v;
-}
-// 2項演算子オーバーロード
-const Vector3 operator+(const Vector3& v1, const Vector3& v2) {
-	Vector3 temp(v1);
-	return temp += v2;
-}
-const Vector3 operator-(const Vector3& v1, const Vector3& v2) {
-	Vector3 temp(v1);
-	return temp -= v2;
-}
-const Vector3 operator*(const Vector3& v, float s) {
-	Vector3 temp(v);
-	return temp *= s;
-}
-const Vector3 operator*(float s, const Vector3& v) { return v * s; }
-const Vector3 operator/(const Vector3& v, float s) {
-	Vector3 temp(v);
-	return temp /= s;
-}
-
-
     return result;
 }
-// 単項演算子オーバーロード
+
 Vector3 operator+(const Vector3& v) { return v; }
 Vector3 operator-(const Vector3& v) { return Vector3(-v.x, -v.y, -v.z); }
+
 Vector3& operator+=(Vector3& lhv, const Vector3& rhv) {
 	lhv.x += rhv.x;
 	lhv.y += rhv.y;
 	lhv.z += rhv.z;
 	return lhv;
 }
+
 Vector3& operator-=(Vector3& lhv, const Vector3& rhv) {
 	lhv.x -= rhv.x;
 	lhv.y -= rhv.y;
 	lhv.z -= rhv.z;
 	return lhv;
 }
+
 Vector3& operator*=(Vector3& v, float s) {
 	v.x *= s;
 	v.y *= s;
 	v.z *= s;
 	return v;
 }
+
 Vector3& operator/=(Vector3& v, float s) {
 	v.x /= s;
 	v.y /= s;
 	v.z /= s;
 	return v;
 }
-// 2項演算子オーバーロード
 const Vector3 operator+(const Vector3& v1, const Vector3& v2) {
 	Vector3 temp(v1);
 	return temp += v2;
 }
+
 const Vector3 operator-(const Vector3& v1, const Vector3& v2) {
 	Vector3 temp(v1);
 	return temp -= v2;
 }
+
 const Vector3 operator*(const Vector3& v, float s) {
 	Vector3 temp(v);
 	return temp *= s;
 }
+
 const Vector3 operator*(float s, const Vector3& v) { return v * s; }
+
 const Vector3 operator/(const Vector3& v, float s) {
 	Vector3 temp(v);
 	return temp /= s;
