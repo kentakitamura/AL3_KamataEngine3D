@@ -3,7 +3,6 @@
 #include "Model.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
-
 class MapChipField;
 
 /// <summary>
@@ -40,7 +39,7 @@ public:
 
 	/// <summary>
 	/// 描画
-	/// </summary>
+
 	void Draw();
 
 	// setter
@@ -64,6 +63,7 @@ private:
 	static inline const float kHeight = 0.8f;
 	static inline const float kBlank = 0.04f;
 	static inline const float kGroundSearchHeight = 0.06f;
+	
 
 	// マップとの当たり判定情報
 	struct CollisionMapInfo {
