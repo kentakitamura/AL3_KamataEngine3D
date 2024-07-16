@@ -9,7 +9,10 @@ class Enemy {
 	/// 初期化
 	
 	
-	void Initialize(Model* model, ViewProjection* viewProjection);
+	void Initialize(Model* model, const Vector3& position, ViewProjection* viewProjection);
+	void Initialize(const Vector3& position, ViewProjection* viewProjection);
+
+
 
 	/// 更新
 	void Update();
@@ -19,6 +22,8 @@ class Enemy {
 	void Draw();
   
 
+
+
   private:
 	// ワールド変換データ
 	WorldTransform worldTransform_;
@@ -26,4 +31,6 @@ class Enemy {
 	// モデル
 	Model* model_ = nullptr;
 
+	// テクスチャハンドル
+	uint32_t textureHandle_ = 0u;
 };

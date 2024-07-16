@@ -79,8 +79,9 @@ void GameScene::Initialize() {
 	//敵の生成
 	enemy_ = new Enemy();
 	
+	Vector3 enemyPosition = mapChipField_->GetMapChipPositionByIndex(1, 20);
 	//敵の初期化
-	enemy_->Initialize(modelEnemy_, &viewProjection_);
+	enemy_->Initialize(modelEnemy_, enemyPosition, &viewProjection_);
 	
 }
 
@@ -195,7 +196,7 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 	// 3Dモデル描画
-	//	model_->Draw(worldTransform_, viewProjection_, textureHandle_);
+	
 	// 自キャラの描画
 	player_->Draw();
 
