@@ -49,4 +49,20 @@ class Enemy {
 	static inline const float kWalkspeed = 0.02f;
 
 	Vector3 velocity_ = {};
+
+
+	//最初の角度
+	static inline const float kWalkMotionAngleStart = 0.5;
+
+	//最後の角度
+	static inline const float kWalkMotionAngleEng = 1;
+
+	//アニメーションの時間
+	static inline const float kWalkMotionTime = 2;
+
+	//経過時間
+	float walkTimer_ = 0.0f;
+
+
+
 };
