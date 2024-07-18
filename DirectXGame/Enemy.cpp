@@ -1,4 +1,8 @@
 ﻿#include "Enemy.h"
+#include "myMath.h"
+#include <cassert>
+#include <numbers>
+
 
 
 
@@ -12,7 +16,10 @@ void Enemy::Initialize(Model* model, const Vector3& position, ViewProjection* vi
 
 	velocity_ = { -kWalkspeed,0,0,};
 
-	walkTimer_ = 0.0f;
+	walkTimer_= 0.0f;
+
+	worldTransform_.rotation_.y = std::numbers::pi_v<float> * 3.0f / 2.0f;
+	
 }
 
 void Enemy::Update() {
@@ -24,8 +31,8 @@ void Enemy::Update() {
 
 	walkTimer_ += 1.0f / 60.0f;
 
-	float param = std::sin(walkTimer_/6);
-	float radian = kWalkMotionAngleStart + kWalkMotionAngleEng * (param + 1.0f) / 2.0f;
+	worldTransform_.rotation_.x =
+	    std::sin(std::numbers::pi_v<float> * 2.0f * walkTimer_ / kWalkMotionTime);
 
 
 
