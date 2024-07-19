@@ -9,6 +9,10 @@ GameScene::GameScene() {}
 GameScene::~GameScene() {
 	delete model_;
 
+	for (Enemy* enemy : enemies_) {
+		delete enemy;
+	}
+
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
 			delete worldTransformBlock;
@@ -167,6 +171,34 @@ void GameScene::Update() {
 			worldTransformBlockYoko->TransferMatrix();
 		}
 	}
+	CheckAllCollisions();
+}
+
+void GameScene::CheckAllCollisions() {
+
+	// 判定対象１と２の座標
+	AABB aabb1, aabb2;
+
+#pragma region
+	// 自キャラの座標
+	aabb1 = player_->GetAABB();
+
+	// 自キャラと敵弾全ての当たり判定
+	for (Enemy* enemy : enemies_) {
+
+		// 敵弾の座標
+		aabb2 = enemy->GetAABB();
+
+		// AABB同士の交差判定
+		if (IsCollision(aabb1, aabb2)) {
+
+			// 自キャラの衝突時コールバックを呼び出す
+			player_->OnCollision(enemy);
+
+			enemy->OnCollision(player_);
+		}
+	}
+#pragma endregion
 }
 
 void GameScene::Draw() {

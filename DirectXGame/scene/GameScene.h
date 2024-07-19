@@ -50,6 +50,8 @@ public: // メンバ関数
 
 	void GenerateBlocks();
 
+	void CheckAllCollisions();
+
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
@@ -93,4 +95,5 @@ private: // メンバ変数
 
 	//敵
 	Enemy* enemy_ = nullptr;
+	std::list<Enemy*> enemies_;
 };
