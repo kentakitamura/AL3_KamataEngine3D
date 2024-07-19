@@ -1,68 +1,41 @@
 ﻿#pragma once
 
-
+#include "AABB.h"
 #include "Model.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 
+class Player;
+
 class Enemy {
-	
+public:
+	/// <summary>
+	/// 敵
+	/// </summary>
+	void Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position);
 
-	public:
-	/// 初期化
-	
-	
-	void Initialize(Model* model, const Vector3& position, ViewProjection* viewProjection);
-	void Initialize(const Vector3& position, ViewProjection* viewProjection);
-
-
-
-	/// 更新
 	void Update();
 
-	/// 描画
-
 	void Draw();
-  
 
+	// ワールド座標を取得
+	Vector3 GetWorldPosition();
 
+	AABB GetAABB();
 
-  private:
+	void OnCollision(const Player* player);
 
-	  /// 最初の角度
-	  
-	  static inline const float kAcceleration = 0.01f;
-	 
-	  
+private:
+	static inline const float kWalkSpeed = 0.02f;
+	static inline const float kWalkMotionAngleStart = 0.0f;
+	static inline const float kWalkMotionAngleEnd = 30.0f;
+	static inline const float kWalkMotionTime = 1.0f;
+	static inline const float kWidth = 0.8f;
+	static inline const float kHeight = 0.8f;
 
-	  // 最後の角度
-	  //static inline const float kWalkMotionAngleEnd = 35.0f;
-	// ワールド変換データ
+	Model* model_ = nullptr;
 	WorldTransform worldTransform_;
 	ViewProjection* viewProjection_ = nullptr;
-	// モデル
-	Model* model_ = nullptr;
-
-	// テクスチャハンドル
-	uint32_t textureHandle_ = 0u;
-
-	static inline const float kWalkspeed = 0.02f;
-
 	Vector3 velocity_ = {};
-
-
-	//最初の角度
-	static inline const float kWalkMotionAngleStart = 0.5;
-
-	//最後の角度
-	static inline const float kWalkMotionAngleEng = 1;
-
-	//アニメーションの時間
-	static inline const float kWalkMotionTime = 2;
-
-	//経過時間
-	float walkTimer_ = 0.0f;
-
-
-
+	float walkTimer = 0.0f;
 };
