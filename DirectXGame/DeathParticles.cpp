@@ -51,7 +51,7 @@ void DeathParticles::Draw() {
 		return;
 	}
 
-	//for (auto& worldTransform : worldTransforms_) {
-	//	model_->Draw(worldTransform, *viewProjection_ &objectColor_);
-	//}
+	for (auto& worldTransform : worldTransforms_) {
+		model_->Draw(worldTransform, *viewProjection_ /*&objectColor_*/);
+	}
 }
