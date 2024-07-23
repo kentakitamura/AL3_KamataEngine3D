@@ -25,6 +25,8 @@ private:
 	ViewProjection* viewProjection_ = nullptr;
 	bool isFinished_ = false;
 	float counter_ = 0.0f;
-	ObjectColor objectColor_;
-	Vector4 color_;
+	//ObjectColor objectColor_;
+	//Vector4 color_;
+
+	
 };

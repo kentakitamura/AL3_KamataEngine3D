@@ -47,7 +47,7 @@ void GameScene::Initialize() {
 
 	// マップチップフィールドの生成
 	mapChipField_ = new MapChipField;
-	mapChipField_->LoadMapChipCsv("Resources/blocks.csv");
+	mapChipField_->LoadMapChipCsv("Resources/map.csv");
 
 	// 自キャラの生成
 	player_ = new Player();
@@ -203,8 +203,7 @@ void GameScene::ChangePhase() {
 
 			deathParticles_ = new DeathParticles;
 
-			deathParticles_->Initialize(
-			    modelDeathParticle_, &viewProjection_, deathParticlesPosition);
+			deathParticles_->Initialize(modelDeathParticle_, &viewProjection_, deathParticlesPosition);
 		}
 		break;
 	case Phase::kDeath:
