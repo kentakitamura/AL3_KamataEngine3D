@@ -94,6 +94,6 @@ private: // メンバ変数
 	CameraController* cameraController = nullptr;
 
 	//敵
-	Enemy* enemy_ = nullptr;
+	Enemy* newEnemy_ = nullptr;
 	std::list<Enemy*> enemies_;
 };

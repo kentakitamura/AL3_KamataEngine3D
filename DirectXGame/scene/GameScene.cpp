@@ -80,12 +80,12 @@ void GameScene::Initialize() {
 	CameraController::Rect cameraArea = {12.0f, 100 - 12.0f, 6.0f, 6.0f};
 	cameraController->SetMovableArea(cameraArea);
 
-	//敵の生成
-	enemy_ = new Enemy();
-	
-	Vector3 enemyPosition = mapChipField_->GetMapChipPositionByIndex(5,18);
-	//敵の初期化
-	enemy_->Initialize(modelEnemy_, enemyPosition, &viewProjection_);
+	// 敵の生成
+	newEnemy_ = new Enemy();
+	Vector3 enemyPosition = mapChipField_->GetMapChipPositionByIndex(14, 18);
+	newEnemy_->Initialize(modelEnemy_, &viewProjection_, enemyPosition);
+
+	enemies_.push_back(newEnemy_);
 	
 }
 
@@ -153,7 +153,7 @@ void GameScene::Update() {
 	skydome_->Update();
 
 	//敵の更新
-	enemy_->Update();
+	newEnemy_->Update();
 
 	// 縦横ブロック更新
 	for (std::vector<WorldTransform*> worldTransformBlockTate : worldTransformBlocks_) {
@@ -236,7 +236,7 @@ void GameScene::Draw() {
 	skydome_->Draw();
 
 	//敵の描画
-	enemy_->Draw();
+	newEnemy_->Draw();
 
 	// 縦横ブロック描画
 	for (std::vector<WorldTransform*> worldTransformBlockTate : worldTransformBlocks_) {

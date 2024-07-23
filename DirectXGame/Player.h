@@ -1,8 +1,10 @@
 ﻿#pragma once
 
+#include "AABB.h"
 #include "Model.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
+
 class MapChipField;
 class Enemy;
 
@@ -40,7 +42,7 @@ public:
 
 	/// <summary>
 	/// 描画
-
+	/// </summary>
 	void Draw();
 
 	// ワールド座標を取得
@@ -71,7 +73,6 @@ private:
 	static inline const float kHeight = 0.8f;
 	static inline const float kBlank = 0.04f;
 	static inline const float kGroundSearchHeight = 0.06f;
-	
 
 	// マップとの当たり判定情報
 	struct CollisionMapInfo {
@@ -81,21 +82,14 @@ private:
 		Vector3 move;
 	};
 
-	// モデル
 	Model* model_ = nullptr;
-	// ワールド変換データ
 	WorldTransform worldTransform_;
 	ViewProjection* viewProjection_ = nullptr;
 	Vector3 velocity_ = {};
-
 	bool onGround_ = true;
-
 	LRDirection lrDirection_ = LRDirection::kRight;
-	// 旋回開始時の角度
 	float turnFirstRotationY_ = 0.0f;
-	// 旋回タイマー
 	float turnTimer_ = 0.0f;
-	// マップチップによるフィールド
 	MapChipField* mapChipField_ = nullptr;
 
 	void InputMove();
