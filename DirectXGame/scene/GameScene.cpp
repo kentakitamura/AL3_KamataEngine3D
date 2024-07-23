@@ -108,6 +108,7 @@ void GameScene::Update() {
 
 		CheckAllCollisions();
 
+		break;
 	case Phase::kDeath:
 		worldTransformSkydome_.UpdateMatrix();
 
