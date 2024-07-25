@@ -171,13 +171,18 @@ void GameScene::Draw() {
 		player_->Draw();
 	}
 
+	//敵
 	for (Enemy* enemy : enemies_) {
 		enemy->Draw();
 	}
 
+	//パーティクル
 	if (deathParticles_) {
 		deathParticles_->Draw();
 	}
+
+
+
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();

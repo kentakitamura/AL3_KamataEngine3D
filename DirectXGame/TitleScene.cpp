@@ -12,7 +12,7 @@ TitleScene::~TitleScene() {
 }
 
 void TitleScene::Initialize() {
-	modelTitle_ = Model::CreateFromOBJ("text", true);
+	modelTitle_ = Model::CreateFromOBJ("titleFont", true);
 	modelPlayer_ = Model::CreateFromOBJ("player");
 	// ビュープロジェクションの初期化
 	viewProjection_.Initialize();
@@ -54,4 +54,10 @@ void TitleScene::Draw() {
 	modelTitle_->Draw(worldTransformTitle_, viewProjection_);
 	modelPlayer_->Draw(worldTransformPlayer_, viewProjection_);
 	Model::PostDraw();
+}
+
+bool TitleScene::IsFinished() {
+
+	return finished_;
+
 }
