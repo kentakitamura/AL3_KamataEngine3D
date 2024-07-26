@@ -138,6 +138,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		// ImGui受付開始
 		imguiManager->Begin();
+
+
+		input->Update();
 		//シーン切り替え
 		ChangeScene();
 		// 現在シーン更新

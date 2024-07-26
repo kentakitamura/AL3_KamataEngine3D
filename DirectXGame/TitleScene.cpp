@@ -56,8 +56,3 @@ void TitleScene::Draw() {
 	Model::PostDraw();
 }
 
-bool TitleScene::IsFinished() {
-
-	return finished_;
-
-}
