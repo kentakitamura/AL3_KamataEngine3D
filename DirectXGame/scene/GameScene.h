@@ -51,5 +51,5 @@ private: // メンバ変数
 	/// </summary>
 	Model* model_ = nullptr; 
 	
-	std::vector<wo
+	//std::vector<wo
 };
