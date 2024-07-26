@@ -73,11 +73,11 @@ void GameScene::Draw() {
 	/// </summary>
 	
 	// 3Dモデル描画
-	model_->Draw(worldTransform_, viewProjection_, textureHandle_);
+	//model_->Draw(worldTransform_, viewProjection_, textureHandle_);
 
 	
   //自キャラの描写
-	player_->Draw();
+	//player_->Draw();
 
 
 	
